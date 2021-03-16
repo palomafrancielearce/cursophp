@@ -24,10 +24,22 @@ require_once("config.php");
 
 
 //inserindo usuariio
-$aluno = new Usuario("aluno", "password");
+//$aluno = new Usuario("aluno", "password");
 //$aluno->setLogin("aluno");
 //$aluno->setSenha("@luno");
-$aluno ->insert();
-echo $aluno;
+//$aluno ->insert();
+//echo $aluno;
 
+//atualizando login e senha
+//$usuario=new Usuario();
+//$usuario->loadById(3);
+//$usuario->update("aluno", "aluno123");
+//echo $usuario;
+
+
+//deletando usuarios
+$usuario=new Usuario();
+$usuario->loadById(3);
+$usuario->delete();
+echo $usuario;
 ?>

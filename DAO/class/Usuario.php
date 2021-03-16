@@ -117,6 +117,29 @@ class Usuario{
         }
     }
 
+    public function update($login, $password){
+        $this->setLogin($login);
+        $this->setSenha($password);
+        $sql = new Sql();
+        $sql->execQuery("UPDATE usuarios SET deslogin=:LOGIN, dessenha=:PASSWORD WHERE idUsuario=:ID", array(
+            ':LOGIN'=>$this->getLogin(),
+            ':PASSWORD'=> $this->getSenha(),
+            ':ID'=>$this->getIdUsuario()
+        ));
+    }
+
+    public function delete(){
+        $sql = new Sql();
+        $sql->execQuery("DELETE FROM usuarios WHERE idUsuario=:ID", array(
+            ':ID'=>$this->getIdUsuario()
+        ));
+        $this->setIdUsuario(0);
+        $this->setLogin("");
+        $this->setSenha("");
+        $this->setDtCadastro(new Datetime());
+        //com o codigo acima estamos setando no objeto de PHP os valores nulo já que apagamos ele
+    }
+
     public function __construct($login="", $senha="")
     //colocando ="" nos parametros faz com que ele não seja obrigatorio, posso chamar tanto passando parametros quando não
     //passando, se não passar, vai preencher com ""
